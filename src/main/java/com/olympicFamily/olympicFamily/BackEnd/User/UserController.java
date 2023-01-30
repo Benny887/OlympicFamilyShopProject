@@ -3,6 +3,7 @@ package com.olympicFamily.olympicFamily.BackEnd.User;
 import com.olympicFamily.olympicFamily.Common.Entity.Role;
 import com.olympicFamily.olympicFamily.Common.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -74,6 +75,17 @@ public class UserController {
         } catch (UserNotFoundException e) {
             redirectAttributes.addFlashAttribute("message", e.getMessage());
         }
+        return "redirect:/users";
+    }
+
+    @GetMapping("users/{id}/enabled/{status}")
+    public String updateUserEnabledStatus(@PathVariable("id") Integer id,
+                                          @PathVariable("status") boolean enabled,
+                                          RedirectAttributes redirectAttributes){
+        service.updateUserEnabledStatus(id, enabled);
+        String status = enabled ? "enabled" : "disabled";
+        String message = "The user ID " + id + " has been " + status;
+        redirectAttributes.addFlashAttribute("message", message);
         return "redirect:/users";
     }
 }
