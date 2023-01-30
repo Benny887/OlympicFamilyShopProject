@@ -7,6 +7,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Objects;
 
 @Service
 public class UserService {
@@ -29,7 +31,20 @@ public class UserService {
     }
 
     public void save(User user) {
-        encodePassword(user);
+        boolean isUpdatingUser = (user.getId() != null);
+
+        if(isUpdatingUser){
+            User existingUser = userRepo.findById(user.getId()).get();
+
+            if(user.getPassword().isEmpty()){
+                user.setPassword(existingUser.getPassword());
+            } else {
+                encodePassword(user);
+            }
+        } else {
+            encodePassword(user);
+        }
+
         userRepo.save(user);
     }
 
@@ -38,8 +53,37 @@ public class UserService {
         user.setPassword(encoderPassword);
     }
 
-    public boolean isEmailUnique(String emil){
+    public boolean isEmailUnique(Integer id, String emil){
         User userByEmail = userRepo.getUserByEmail(emil);
-        return userByEmail == null;
+
+        if(userByEmail == null)
+            return true;
+        boolean isCreatingNew = (id == null);
+
+        if(isCreatingNew){
+            if(userByEmail != null){
+                return false;
+            } else {
+                if(!Objects.equals(userByEmail.getId(), id))
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    public User get(Integer id) throws UserNotFoundException {
+        try{
+            return userRepo.findById(id).get();
+        } catch (NoSuchElementException e){
+            throw new UserNotFoundException("Could not find any user with id " + id);
+        }
+    }
+
+    public void delete(Integer id) throws UserNotFoundException {
+        Long countById = userRepo.countById(id);
+        if(countById == null || countById == 0){
+            throw new UserNotFoundException("Could not find any user with id " + id);
+        }
+        userRepo.deleteById(id);
     }
 }
