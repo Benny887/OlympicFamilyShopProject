@@ -135,4 +135,21 @@ public class UserRepositoryTest {
         assertThat(listUsers.size()).isEqualTo(pageSize);
     }
 
+    @Test
+    public void testSearchUsers(){
+        String keyWord = "Mike";
+
+        int pageNumber = 0; //5-9
+        int pageSize = 4;
+
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+        Page<User> page = repo.findAll(keyWord, pageable);
+
+        List<User> listUsers = page.getContent();
+
+        listUsers.forEach(System.out::println);
+
+        assertThat(listUsers.size()).isGreaterThan(0);
+    }
+
 }
