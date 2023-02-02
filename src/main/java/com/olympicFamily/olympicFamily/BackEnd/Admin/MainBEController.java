@@ -10,4 +10,9 @@ public class MainBEController {
     public String viewHomePage(){
         return "BackEnd/BEindex";
     }
+
+    @GetMapping("/login")
+    public String viewLoginPage(){
+        return "BackEnd/login";
+    }
 }
