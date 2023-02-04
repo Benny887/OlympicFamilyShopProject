@@ -1,5 +1,6 @@
-package com.olympicFamily.olympicFamily.BackEnd.User;
+package com.olympicFamily.olympicFamily.BackEnd.Controller;
 
+import com.olympicFamily.olympicFamily.BackEnd.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PostMapping;
