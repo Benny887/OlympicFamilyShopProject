@@ -25,7 +25,7 @@ public class CategoryController {
 
     @GetMapping("/categories")
     public String listAll(@Param("sortDir") String sortDir, Model model) {
-        if (sortDir ==  null || sortDir.isEmpty()) {
+        if (sortDir == null || sortDir.isEmpty()) {
             sortDir = "asc";
         }
 
@@ -97,6 +97,23 @@ public class CategoryController {
         String message = "The category ID " + id + " has been " + status;
         redirectAttributes.addFlashAttribute("message", message);
 
+        return "redirect:/categories";
+    }
+
+    @GetMapping("/categories/delete/{id}")
+    public String deleteCategory(@PathVariable(name = "id") Integer id,
+                                 Model model,
+                                 RedirectAttributes redirectAttributes) {
+        try {
+            service.delete(id);
+            String categoryDir = "../category-images/" + id;
+            FileUploadUtil.removeDir(categoryDir);
+
+            redirectAttributes.addFlashAttribute("message",
+                    "The category ID " + id + " has been deleted successfully");
+        } catch (CategoryNotFoundException ex) {
+            redirectAttributes.addFlashAttribute("message", ex.getMessage());
+        }
         return "redirect:/categories";
     }
 }

@@ -11,7 +11,9 @@ import java.util.List;
 public interface CategoryRepository extends PagingAndSortingRepository<Category, Integer> {
 
     @Query("SELECT c FROM Category c WHERE c.parent.id is NULL")
-    public List<Category> findRootCategories(Sort sort);
+    List<Category> findRootCategories(Sort sort);
+
+    Long countById(Integer id);
 
     Category findByName(String name);
 
@@ -19,6 +21,6 @@ public interface CategoryRepository extends PagingAndSortingRepository<Category,
 
     @Query("UPDATE Category c SET c.enabled = ?2 WHERE c.id = ?1")
     @Modifying
-    public void updateEnabledStatus(Integer id, boolean enabled);
+    void updateEnabledStatus(Integer id, boolean enabled);
 
 }
