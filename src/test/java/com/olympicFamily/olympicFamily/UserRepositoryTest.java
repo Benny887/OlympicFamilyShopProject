@@ -137,13 +137,13 @@ public class UserRepositoryTest {
 
     @Test
     public void testSearchUsers(){
-        String keyWord = "Mike";
+        String keyword = "Mike";
 
         int pageNumber = 0; //5-9
         int pageSize = 4;
 
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        Page<User> page = repo.findAll(keyWord, pageable);
+        Page<User> page = repo.findAll(keyword, pageable);
 
         List<User> listUsers = page.getContent();
 

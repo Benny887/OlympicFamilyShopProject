@@ -35,9 +35,9 @@ public class UserController {
     @GetMapping("/users/page/{pageNum}")
     public String listByPage(@PathVariable (name = "pageNum") int pageNum, Model model,
                              @Param("sortField") String sortField, @Param("sortDir") String sortDir,
-                             @Param("keyWord") String keyWord){
+                             @Param("keyword") String keyword){
 
-        Page<User> page = service.listByPage(pageNum, sortField, sortDir, keyWord);
+        Page<User> page = service.listByPage(pageNum, sortField, sortDir, keyword);
         List<User> listUsers = page.getContent();
 
         long startCount = (pageNum - 1) * UserService.USERS_PER_PAGE + 1;
@@ -58,7 +58,7 @@ public class UserController {
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);
         model.addAttribute("reverseSortDir", reverseSortDir);
-        model.addAttribute("keyWord", keyWord);
+        model.addAttribute("keyword", keyword);
 
         return "BackEnd/users";
     }
@@ -101,7 +101,7 @@ public class UserController {
 
     private String getRedirectUrlToAffectedUser(User user) {
         String firstPathOfEmail = user.getEmail().split("@")[0];
-        return "redirect:/users/page/1?sortField=id&sortDir=asc&keyWord=" + firstPathOfEmail;
+        return "redirect:/users/page/1?sortField=id&sortDir=asc&keyword=" + firstPathOfEmail;
     }
 
     @GetMapping("/users/edit/{id}")
