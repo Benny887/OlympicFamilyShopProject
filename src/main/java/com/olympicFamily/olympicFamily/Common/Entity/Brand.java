@@ -3,15 +3,7 @@ package com.olympicFamily.olympicFamily.Common.Entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "brands")
@@ -41,6 +33,11 @@ public class Brand {
     public Brand(String name) {
         this.name = name;
         this.logo = "brand-logo.png";
+    }
+
+    public Brand(Integer id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public Integer getId() {
@@ -78,6 +75,13 @@ public class Brand {
     @Override
     public String toString() {
         return "Brand [id=" + id + ", name=" + name + ", categories=" + categories + "]";
+    }
+
+    @Transient
+    public String getLogoPath() {
+        if (this.id == null) return "/images/image-thumbnail.png";
+
+        return "/brand-logos/" + this.id + "/" + this.logo;
     }
 
 }
