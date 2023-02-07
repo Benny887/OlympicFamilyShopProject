@@ -1,16 +1,21 @@
 package com.olympicFamily.olympicFamily.BackEnd.Admin.product;
 
+import java.io.IOException;
 import java.util.List;
 
+import com.olympicFamily.olympicFamily.BackEnd.Admin.FileUploadUtil;
 import com.olympicFamily.olympicFamily.BackEnd.Admin.brand.BrandService;
 import com.olympicFamily.olympicFamily.Common.Entity.Brand;
 import com.olympicFamily.olympicFamily.Common.Entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -44,8 +49,23 @@ public class ProductController {
     }
 
     @PostMapping("/products/save")
-    public String saveProduct(Product product, RedirectAttributes ra) {
-        productService.save(product);
+    public String saveProduct(Product product, RedirectAttributes ra,
+                              @RequestParam("fileImage") MultipartFile multipartFile) throws IOException {
+
+        if (!multipartFile.isEmpty()) {
+            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            product.setMainImage(fileName);
+
+            Product savedProduct = productService.save(product);
+            String uploadDir = "product-images/" + savedProduct.getId();
+
+            FileUploadUtil.cleanDirectory(uploadDir);
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+
+        } else {
+            productService.save(product);
+        }
+
         ra.addFlashAttribute("message", "The product has been saved successfully.");
 
         return "redirect:/products";
