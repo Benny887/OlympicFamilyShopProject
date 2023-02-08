@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) { // Настроить статический доступ к ресурсам
         exposeDirectory("user-photos", registry);
