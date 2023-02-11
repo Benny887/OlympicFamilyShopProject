@@ -8,6 +8,7 @@ import com.olympicFamily.olympicFamily.Common.Entity.Product;
 import com.olympicFamily.olympicFamily.FrontEnd.category.FECategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -77,5 +78,36 @@ public class FEProductController {
         } catch (ProductNotFoundException e) {
             return "error/404";
         }
+    }
+
+    @GetMapping("/search")
+    public String searchFirstPage(@Param("keyword") String keyword, Model model) {
+        return searchByPage(keyword, 1, model);
+    }
+
+    @GetMapping("/search/page/{pageNum}")
+    public String searchByPage(@Param("keyword") String keyword,
+                               @PathVariable("pageNum") int pageNum,
+                               Model model) {
+        Page<Product> pageProducts = productService.search(keyword, pageNum);
+        List<Product> listResult = pageProducts.getContent();
+
+        long startCount = (pageNum - 1) * FEProductService.SEARCH_RESULTS_PER_PAGE + 1;
+        long endCount = startCount + FEProductService.SEARCH_RESULTS_PER_PAGE - 1;
+        if (endCount > pageProducts.getTotalElements()) {
+            endCount = pageProducts.getTotalElements();
+        }
+
+        model.addAttribute("currentPage", pageNum);
+        model.addAttribute("totalPages", pageProducts.getTotalPages());
+        model.addAttribute("startCount", startCount);
+        model.addAttribute("endCount", endCount);
+        model.addAttribute("totalItems", pageProducts.getTotalElements());
+        model.addAttribute("pageTitle", keyword + " - Search Result");
+
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("listResult", listResult);
+
+        return "FrontEnd/search_result";
     }
 }

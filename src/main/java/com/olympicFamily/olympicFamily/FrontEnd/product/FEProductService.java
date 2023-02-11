@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class FEProductService {
     public static final int PRODUCTS_PER_PAGE = 10;
+    public static final int SEARCH_RESULTS_PER_PAGE = 10;
 
     @Autowired
     private FEProductRepository  repo;
@@ -30,5 +31,11 @@ public class FEProductService {
         }
 
         return product;
+    }
+
+    public Page<Product> search(String keyword, int pageNum) {
+        Pageable pageable = PageRequest.of(pageNum - 1, SEARCH_RESULTS_PER_PAGE);
+        return repo.search(keyword, pageable);
+
     }
 }
