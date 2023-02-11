@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import com.olympicFamily.olympicFamily.BackEnd.Admin.Category.CategoryNotFoundException;
 import com.olympicFamily.olympicFamily.Common.Entity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,8 +30,13 @@ public class FECategoryService {
         return listNoChildrenCategories;
     }
 
-    public Category getCategory(String alias) {
-        return repo.findByAliasEnabled(alias);
+    public Category getCategory(String alias) throws CategoryNotFoundException {
+        Category category = repo.findByAliasEnabled(alias);
+        if (category == null) {
+            throw new CategoryNotFoundException("Could not find any categories with alias " + alias);
+        }
+
+        return category;
     }
 
     public List<Category> getCategoryParents(Category child) {

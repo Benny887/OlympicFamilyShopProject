@@ -1,5 +1,6 @@
 package com.olympicFamily.olympicFamily.FrontEnd.product;
 
+import com.olympicFamily.olympicFamily.BackEnd.Admin.product.ProductNotFoundException;
 import com.olympicFamily.olympicFamily.Common.Entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,5 +21,14 @@ public class FEProductService {
 
         return repo.listByCategory(categoryId, categoryIdMatch, pageable);
 
+    }
+
+    public Product getProduct(String alias) throws ProductNotFoundException {
+        Product product = repo.findByAlias(alias);
+        if (product == null) {
+            throw new ProductNotFoundException("Could not find any product with alias " + alias);
+        }
+
+        return product;
     }
 }
