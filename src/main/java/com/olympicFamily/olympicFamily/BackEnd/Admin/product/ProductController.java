@@ -146,8 +146,8 @@ public class ProductController {
                                 RedirectAttributes redirectAttributes) {
         try {
             productService.delete(id);
-            String productExtraImagesDir = "../product-images/" + id + "/extras";
-            String productImagesDir = "../product-images/" + id;
+            String productExtraImagesDir = "product-images/" + id + "/extras";
+            String productImagesDir = "product-images/" + id;
 
             FileUploadUtil.removeDir(productExtraImagesDir);
             FileUploadUtil.removeDir(productImagesDir);
