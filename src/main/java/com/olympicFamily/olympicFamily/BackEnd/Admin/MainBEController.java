@@ -18,7 +18,7 @@ public class MainBEController {
     public String viewLoginPage(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
-            return "login";
+            return "BackEnd/login";
         }
 
         return "redirect:/";
