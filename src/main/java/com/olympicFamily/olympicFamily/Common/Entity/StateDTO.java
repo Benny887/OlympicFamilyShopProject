@@ -1,4 +1,4 @@
-package com.olympicFamily.olympicFamily.BackEnd.Admin.setting.state;
+package com.olympicFamily.olympicFamily.Common.Entity;
 
 public class StateDTO {
     private Integer id;
