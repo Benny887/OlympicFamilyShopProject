@@ -12,8 +12,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerService {
 
-    @Autowired private CountryRepository countryRepo;
-    @Autowired private CustomerRepository customerRepo;
+    @Autowired
+    private CountryRepository countryRepo;
+    @Autowired
+    private CustomerRepository customerRepo;
 
     public List<Country> listAllCountries() {
         return countryRepo.findAllByOrderByNameAsc();
