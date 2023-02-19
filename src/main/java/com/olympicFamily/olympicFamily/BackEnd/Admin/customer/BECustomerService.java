@@ -5,15 +5,12 @@ import java.util.NoSuchElementException;
 
 import javax.transaction.Transactional;
 
+import com.olympicFamily.olympicFamily.BackEnd.Admin.paging.PagingAndSortingHelper;
 import com.olympicFamily.olympicFamily.BackEnd.Admin.setting.country.CountryRepository;
 import com.olympicFamily.olympicFamily.Common.Entity.Country;
 import com.olympicFamily.olympicFamily.Common.Entity.Customer;
 import com.olympicFamily.olympicFamily.Common.exception.CustomerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,21 +21,15 @@ import org.springframework.stereotype.Service;
 public class BECustomerService {
     public static final int CUSTOMERS_PER_PAGE = 10;
 
-    @Autowired private BECustomerRepository customerRepo;
-    @Autowired private CountryRepository countryRepo;
-    @Autowired private PasswordEncoder passwordEncoder;
+    @Autowired
+    private BECustomerRepository customerRepo;
+    @Autowired
+    private CountryRepository countryRepo;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-    public Page<Customer> listByPage(int pageNum, String sortField, String sortDir, String keyword) {
-        Sort sort = Sort.by(sortField);
-        sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
-
-        Pageable pageable = PageRequest.of(pageNum - 1, CUSTOMERS_PER_PAGE, sort);
-
-        if (keyword != null) {
-            return customerRepo.findAll(keyword, pageable);
-        }
-
-        return customerRepo.findAll(pageable);
+    public void listByPage(int pageNum, PagingAndSortingHelper helper) {
+        helper.listEntities(pageNum, CUSTOMERS_PER_PAGE, customerRepo);
     }
 
     public void updateCustomerEnabledStatus(Integer id, boolean enabled) {
@@ -69,13 +60,19 @@ public class BECustomerService {
     }
 
     public void save(Customer customerInForm) {
+        Customer customerInDB = customerRepo.findById(customerInForm.getId()).get();
+
         if (!customerInForm.getPassword().isEmpty()) {
             String encodedPassword = passwordEncoder.encode(customerInForm.getPassword());
             customerInForm.setPassword(encodedPassword);
         } else {
-            Customer customerInDB = customerRepo.findById(customerInForm.getId()).get();
             customerInForm.setPassword(customerInDB.getPassword());
         }
+
+        customerInForm.setEnabled(customerInDB.isEnabled());
+        customerInForm.setCreatedTime(customerInDB.getCreatedTime());
+        customerInForm.setVerificationCode(customerInDB.getVerificationCode());
+
         customerRepo.save(customerInForm);
     }
 

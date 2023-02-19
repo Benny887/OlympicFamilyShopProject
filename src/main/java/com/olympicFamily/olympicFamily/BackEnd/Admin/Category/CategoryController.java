@@ -58,6 +58,7 @@ public class CategoryController {
 
         model.addAttribute("listCategories", listCategories);
         model.addAttribute("reverseSortDir", reverseSortDir);
+        model.addAttribute("moduleURL", "/categories");
 
         return "categories/categories";
     }

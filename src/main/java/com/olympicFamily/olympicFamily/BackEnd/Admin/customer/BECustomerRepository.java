@@ -1,5 +1,6 @@
 package com.olympicFamily.olympicFamily.BackEnd.Admin.customer;
 
+import com.olympicFamily.olympicFamily.BackEnd.Admin.paging.SearchRepository;
 import com.olympicFamily.olympicFamily.Common.Entity.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 
-public interface BECustomerRepository extends PagingAndSortingRepository<Customer, Integer> {
+public interface BECustomerRepository extends SearchRepository<Customer, Integer> {
 
     @Query("SELECT c FROM Customer c WHERE CONCAT(c.email, ' ', c.firstName, ' ', c.lastName, ' ', "
             + "c.addressLine1, ' ', c.addressLine2, ' ', c.city, ' ', c.state, "
