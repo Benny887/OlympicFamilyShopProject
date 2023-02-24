@@ -1,7 +1,7 @@
 package com.olympicFamily.olympicFamily;
 
-import com.olympicFamily.olympicFamily.BackEnd.Admin.setting.country.CountryRepository;
-import com.olympicFamily.olympicFamily.Common.Entity.Country;
+import all.BackEnd.Admin.setting.country.CountryRepository;
+import all.common.entity.Country;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

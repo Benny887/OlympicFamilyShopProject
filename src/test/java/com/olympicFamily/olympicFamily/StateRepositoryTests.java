@@ -2,9 +2,9 @@ package com.olympicFamily.olympicFamily;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.olympicFamily.olympicFamily.BackEnd.Admin.setting.state.StateRepository;
-import com.olympicFamily.olympicFamily.Common.Entity.Country;
-import com.olympicFamily.olympicFamily.Common.Entity.State;
+import all.BackEnd.Admin.setting.state.StateRepository;
+import all.common.entity.Country;
+import all.common.entity.State;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

@@ -5,10 +5,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Date;
 import java.util.Optional;
 
-import com.olympicFamily.olympicFamily.BackEnd.Admin.product.ProductRepository;
-import com.olympicFamily.olympicFamily.Common.Entity.Brand;
-import com.olympicFamily.olympicFamily.Common.Entity.Category;
-import com.olympicFamily.olympicFamily.Common.Entity.Product;
+import all.BackEnd.Admin.product.ProductRepository;
+import all.common.entity.Brand;
+import all.common.entity.Category;
+import all.common.entity.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

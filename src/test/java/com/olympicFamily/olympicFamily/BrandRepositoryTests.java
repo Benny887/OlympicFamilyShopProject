@@ -4,9 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Optional;
 
-import com.olympicFamily.olympicFamily.BackEnd.Admin.brand.BrandRepository;
-import com.olympicFamily.olympicFamily.Common.Entity.Brand;
-import com.olympicFamily.olympicFamily.Common.Entity.Category;
+import all.BackEnd.Admin.brand.BrandRepository;
+import all.common.entity.Brand;
+import all.common.entity.Category;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

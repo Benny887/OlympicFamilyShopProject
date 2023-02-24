@@ -1,9 +1,9 @@
 package com.olympicFamily.olympicFamily;
 
 
-import com.olympicFamily.olympicFamily.BackEnd.Admin.setting.SettingRepository;
-import com.olympicFamily.olympicFamily.Common.Entity.Setting;
-import com.olympicFamily.olympicFamily.Common.Entity.SettingCategory;
+import all.BackEnd.Admin.setting.SettingRepository;
+import all.common.entity.Setting;
+import all.common.entity.SettingCategory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

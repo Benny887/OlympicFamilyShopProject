@@ -1,7 +1,7 @@
 package com.olympicFamily.olympicFamily;
 
-import com.olympicFamily.olympicFamily.BackEnd.User.RoleRepository;
-import com.olympicFamily.olympicFamily.Common.Entity.Role;
+import all.BackEnd.User.RoleRepository;
+import all.common.entity.Role;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

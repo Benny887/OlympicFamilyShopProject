@@ -2,9 +2,9 @@ package com.olympicFamily.olympicFamily;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.olympicFamily.olympicFamily.BackEnd.Admin.Category.CategoryRepository;
-import com.olympicFamily.olympicFamily.BackEnd.Admin.Category.CategoryService;
-import com.olympicFamily.olympicFamily.Common.Entity.Category;
+import all.BackEnd.Admin.Category.CategoryRepository;
+import all.BackEnd.Admin.Category.CategoryService;
+import all.common.entity.Category;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

@@ -1,7 +1,7 @@
 package com.olympicFamily.olympicFamily;
 
-import com.olympicFamily.olympicFamily.BackEnd.Admin.Category.CategoryRepository;
-import com.olympicFamily.olympicFamily.Common.Entity.Category;
+import all.BackEnd.Admin.Category.CategoryRepository;
+import all.common.entity.Category;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
