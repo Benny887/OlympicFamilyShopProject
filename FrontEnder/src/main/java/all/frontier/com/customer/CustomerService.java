@@ -1,5 +1,6 @@
 package all.frontier.com.customer;
 
+import all.common.entity.AuthenticationType;
 import all.frontier.com.setting.FECountryRepository;
 import all.common.entity.Country;
 import all.common.entity.Customer;
@@ -58,6 +59,12 @@ public class CustomerService {
         } else {
             customerRepo.enable(customer.getId());
             return true;
+        }
+    }
+
+    public void updateAuthentication(Customer customer, AuthenticationType type) {
+        if (!customer.getAuthenticationType().equals(type)) {
+            customerRepo.updateAuthenticationType(customer.getId(), type);
         }
     }
 }
