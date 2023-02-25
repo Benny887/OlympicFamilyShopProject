@@ -1,0 +1,30 @@
+server:
+    port: 8081
+    servlet:
+        context-path: /Olympic
+spring:
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: bestuser
+        url: jdbc:mysql://localhost:3306/of_db
+        username: bestuser
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL8Dialect
+                format_sql: true
+        show-sql: true
+    main:
+        allow-circular-references: true
+    security:
+        oauth2:
+            client:
+                registration:
+                    google:
+                        clientId: 394067954040-qt3737k3d0to0fobujdddugeql8cpuqd.apps.googleusercontent.com
+                        clientSecret: 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
+                        scope:
+                        - email
+                        - profile

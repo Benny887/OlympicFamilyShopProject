@@ -1,6 +1,9 @@
 package all.frontier.com.security;
 //
 //
+import all.frontier.com.security.oauth.CustomerOAuth2UserService;
+import all.frontier.com.security.oauth.OAuth2LoginSuccessHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -15,6 +18,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private CustomerOAuth2UserService oAuth2UserService;
+    @Autowired
+    private OAuth2LoginSuccessHandler oauth2LoginHandler;
+    @Autowired
+    private DatabaseLoginSuccessHandler databaseLoginHandler;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -31,6 +41,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .usernameParameter("email")
                 .permitAll()
+                .and()
+                .oauth2Login()
+                .loginPage("/login")
+                .userInfoEndpoint()
+                .userService(oAuth2UserService)
+                .and()
+                .successHandler(oauth2LoginHandler)
                 .and()
                 .logout().permitAll()
                 .and()
