@@ -1,12 +1,6 @@
 package all.common.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "cart_items")
@@ -64,6 +58,11 @@ public class CartItem {
     public String toString() {
         return "CartItem [id=" + id + ", customer=" + customer.getFullName() + ", product=" + product.getShortName() + ", quantity=" + quantity
                 + "]";
+    }
+
+    @Transient
+    public float getSubtotal() {
+        return product.getDiscountPrice() * quantity;
     }
 
 
