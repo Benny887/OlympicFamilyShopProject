@@ -1,4 +1,4 @@
-import all.BackEnd.Admin.Category.CategoryRepository;
+import all.backEnd.admin.category.CategoryRepository;
 import all.common.entity.Category;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

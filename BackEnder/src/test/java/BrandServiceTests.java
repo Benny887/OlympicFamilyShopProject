@@ -1,5 +1,5 @@
-import all.BackEnd.Admin.brand.BrandRepository;
-import all.BackEnd.Admin.brand.BrandService;
+import all.backEnd.admin.brand.BrandRepository;
+import all.backEnd.admin.brand.BrandService;
 import all.common.entity.Brand;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

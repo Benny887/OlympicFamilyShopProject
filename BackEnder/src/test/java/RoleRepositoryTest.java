@@ -1,4 +1,4 @@
-import all.BackEnd.User.RoleRepository;
+import all.backEnd.user.RoleRepository;
 import all.common.entity.Role;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

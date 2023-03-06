@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-<head th:replace="fragments :: page_head('Products - Shopme Admin', 'none')" />
+<head th:replace="fragments :: page_head('Products - OlympicFamily Admin', 'none')" />
 <body>
 <div class="container-fluid">
   <div th:replace="navigation :: menu"></div>
@@ -10,7 +10,6 @@
 
     <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
       <a th:href="@{/products/new}" class="fas fa-folder-plus fa-2x icon-dark mr-2"></a>
-      <a th:href="@{/products/export/csv}" class="fas fa-file-csv fa-2x icon-dark mr-2"></a>
     </th:block>
 
   </div>

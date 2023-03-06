@@ -1,4 +1,4 @@
-import all.BackEnd.Admin.product.ProductRepository;
+import all.backEnd.admin.product.ProductRepository;
 import all.common.entity.Brand;
 import all.common.entity.Category;
 import all.common.entity.Product;

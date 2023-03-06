@@ -1,5 +1,5 @@
-import all.BackEnd.Admin.Category.CategoryRepository;
-import all.BackEnd.Admin.Category.CategoryService;
+import all.backEnd.admin.category.CategoryRepository;
+import all.backEnd.admin.category.CategoryService;
 import all.common.entity.Category;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

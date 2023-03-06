@@ -1,4 +1,4 @@
-import all.BackEnd.Admin.setting.SettingRepository;
+import all.backEnd.admin.setting.SettingRepository;
 import all.common.entity.Setting;
 import all.common.entity.SettingCategory;
 import org.junit.jupiter.api.Test;

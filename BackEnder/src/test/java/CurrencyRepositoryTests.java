@@ -1,4 +1,4 @@
-import all.BackEnd.Admin.setting.CurrencyRepository;
+import all.backEnd.admin.setting.CurrencyRepository;
 import all.common.entity.Currency;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

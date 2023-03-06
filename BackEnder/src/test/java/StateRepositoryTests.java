@@ -1,4 +1,4 @@
-import all.BackEnd.Admin.setting.state.StateRepository;
+import all.backEnd.admin.setting.state.StateRepository;
 import all.common.entity.Country;
 import all.common.entity.State;
 import org.junit.jupiter.api.Test;

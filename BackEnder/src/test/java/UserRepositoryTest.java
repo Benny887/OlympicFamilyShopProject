@@ -1,4 +1,4 @@
-import all.BackEnd.User.UserRepository;
+import all.backEnd.user.UserRepository;
 import all.common.entity.Role;
 import all.common.entity.User;
 import org.junit.jupiter.api.Test;

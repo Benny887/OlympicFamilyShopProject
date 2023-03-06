@@ -1,4 +1,4 @@
-import all.BackEnd.Admin.setting.country.CountryRepository;
+import all.backEnd.admin.setting.country.CountryRepository;
 import all.common.entity.Country;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

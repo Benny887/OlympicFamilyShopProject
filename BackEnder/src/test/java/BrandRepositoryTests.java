@@ -1,4 +1,4 @@
-import all.BackEnd.Admin.brand.BrandRepository;
+import all.backEnd.admin.brand.BrandRepository;
 import all.common.entity.Brand;
 import all.common.entity.Category;
 import org.junit.jupiter.api.Test;
